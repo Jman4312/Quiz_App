@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/name_hint"
         app:layout_constraintTop_toBottomOf="@+id/textBox"
-        app:layout_constraintLeft_toLeftOf="@id/vert_guideline" />
+        app:layout_constraintLeft_toLeftOf="@id/vert_guideline"/>
 
     <EditText
         android:id="@+id/response2EditText"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/color_hint"
         app:layout_constraintTop_toBottomOf="@id/responseEditText"
-        app:layout_constraintLeft_toRightOf="@id/vert_guideline" />
+        app:layout_constraintLeft_toRightOf="@id/vert_guideline"/>
 
     <Button
         android:id="@+id/clickButton"
