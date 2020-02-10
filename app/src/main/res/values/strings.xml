@@ -7,4 +7,10 @@
     <string name="time">Time: %1$d</string>
     <string name="activity2_name">Second Activity</string>
     <string name="returnValue">return</string>
+    <string name="text_box2_label">Name</string>
+    <string-array name="textArray">
+        <item> Hi Mom! </item>
+        <item> Hi Dad! </item>
+        <item> Hello </item>
+    </string-array>
 </resources>

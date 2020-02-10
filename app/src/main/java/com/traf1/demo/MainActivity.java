@@ -7,22 +7,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     Button submitButton;
     EditText responseText, response2Text;
-    TextView displayText;
+    TextView displayText, displayText2;
     Timer timer = new Timer();
     SharedPreferences mPreferences;
     int duration = 0;
+    int numOfClicks = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         submitButton=findViewById(R.id.clickButton);
         responseText=findViewById(R.id.responseEditText);
         displayText=findViewById(R.id.textBox);
+        displayText2=findViewById(R.id.textBox2);
         //restore preferences into submit button
-        submitButton.setText(mPreferences.getString("mResponse","defaultString")
-                +mPreferences.getInt("mResponseNum",99));
+        //submitButton.setText(mPreferences.getString("mResponse","defaultString")
+        //        +mPreferences.getInt("mResponseNum",99));
         responseText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.apply();
     }
     public void submit(View view) {//process button onClick event
+        /*
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -80,13 +81,17 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }, 1000, 1000);
+         */
         String text = "";
         ArrayList<String> texts = new ArrayList<>();
         texts.add("Hi Mom!");
         texts.add("Hi Dad!");
         texts.add("Hi Person!");
-        displayText.setText(texts.get(0));
-        Toast.makeText(getApplicationContext(),"Done reading.",Toast.LENGTH_SHORT).show();
+        //displayText.setText();
+        numOfClicks += 1;
+        if (numOfClicks >= texts.size()){ numOfClicks = 0;}
+        //Toast.makeText(getApplicationContext(),"Done reading.",Toast.LENGTH_SHORT).show();
+        displayText2.setText(responseText.getText());
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

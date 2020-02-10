@@ -14,12 +14,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_box2_label"
+        app:layout_constraintBottom_toBottomOf="@+id/textBox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <EditText
         android:id="@+id/responseEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/name_hint"
-        app:layout_constraintTop_toBottomOf="@+id/textBox"
+        app:layout_constraintTop_toBottomOf="@+id/textBox2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/response2EditText"/>
     <!--        android:inputType="TODO"-->
@@ -30,7 +39,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/color_hint"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/textBox"
+        app:layout_constraintTop_toBottomOf="@+id/textBox2"
         app:layout_constraintLeft_toRightOf="@id/responseEditText"
         app:layout_constraintRight_toRightOf="parent"/>
     <Button
