@@ -30,9 +30,10 @@
         android:hint="@string/name_hint"
         app:layout_constraintTop_toBottomOf="@+id/textBox2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/response2EditText"/>
+        app:layout_constraintRight_toRightOf="parent"/>
     <!--        android:inputType="TODO"-->
     <!--        android:autofillHints="AUTOFILL_HINT_NAME" />-->
+    <!--
     <EditText
         android:id="@+id/response2EditText"
         android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
         android:inputType="number"
         app:layout_constraintTop_toBottomOf="@+id/textBox2"
         app:layout_constraintLeft_toRightOf="@id/responseEditText"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"/>  -->
     <Button
         android:id="@+id/clickButton"
         android:layout_width="wrap_content"

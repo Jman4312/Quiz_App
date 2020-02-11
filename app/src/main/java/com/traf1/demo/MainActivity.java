@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //initialize preferences
         mPreferences = getSharedPreferences("com.traf1.demo.sharedprefs",MODE_PRIVATE);
-        response2Text = findViewById(R.id.response2EditText);
+        //response2Text = findViewById(R.id.response2EditText);
         submitButton=findViewById(R.id.clickButton);
         responseText=findViewById(R.id.responseEditText);
         displayText=findViewById(R.id.textBox);
@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
         //store values into preferences onPause
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         preferencesEditor.putString("mResponse", responseText.getText().toString());
-        preferencesEditor.putInt("mResponseNum", Integer.parseInt(response2Text.getText().toString()));
+        // preferencesEditor.putInt("mResponseNum", Integer.parseInt(response2Text.getText().toString()));
         preferencesEditor.apply();
     }
     public void submit(View view) {//process button onClick event
-        /*
+    /*
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }, 1000, 1000);
-         */
+    */
         String text = "";
         // ArrayList<String> texts = new ArrayList<>();
         // texts.add("Hi Mom!");
@@ -92,12 +92,18 @@ public class MainActivity extends AppCompatActivity {
         if (numOfClicks >= texts.length){ numOfClicks = 0;}
         //Toast.makeText(getApplicationContext(),"Done reading.",Toast.LENGTH_SHORT).show();
         displayText2.setText(responseText.getText());
+
+        // Create New Activity
+
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("com.lowejimmy.quizapp.extra.MESSAGE",displayText2.getText().toString());
+        startActivityForResult(intent, 1);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1 & resultCode==RESULT_OK){
-            displayText.setText(data.getStringExtra("com.traf1.demo.extra.REPLY"));
+            displayText.setText(data.getStringExtra("com.lowejimmy.quizapp.extra.REPLY"));
         }
     }
 }
