@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
@@ -83,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
         }, 1000, 1000);
          */
         String text = "";
-        ArrayList<String> texts = new ArrayList<>();
-        texts.add("Hi Mom!");
-        texts.add("Hi Dad!");
-        texts.add("Hi Person!");
-        //displayText.setText();
+        // ArrayList<String> texts = new ArrayList<>();
+        // texts.add("Hi Mom!");
+        // texts.add("Hi Dad!");
+        // texts.add("Hi Person!");
+        String[] texts = getResources().getStringArray(R.array.textArray);
+        displayText.setText(texts[numOfClicks]);
         numOfClicks += 1;
-        if (numOfClicks >= texts.size()){ numOfClicks = 0;}
+        if (numOfClicks >= texts.length){ numOfClicks = 0;}
         //Toast.makeText(getApplicationContext(),"Done reading.",Toast.LENGTH_SHORT).show();
         displayText2.setText(responseText.getText());
     }
