@@ -10,6 +10,7 @@
     <string name="text_box2_label">Name</string>
     <string name="quiz">Quiz!</string>
     <string name="time_left">Time Left: %1$d</string>
+    <string name="cornerbox1">cornerBox1</string>
     <string-array name="textArray">
         <item> Hi Mom! </item>
         <item> Hi Dad! </item>

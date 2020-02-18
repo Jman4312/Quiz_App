@@ -31,18 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textBox2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-    <!--        android:inputType="TODO"-->
-    <!--        android:autofillHints="AUTOFILL_HINT_NAME" />-->
-    <!--
-    <EditText
-        android:id="@+id/response2EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/color_hint"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/textBox2"
-        app:layout_constraintLeft_toRightOf="@id/responseEditText"
-        app:layout_constraintRight_toRightOf="parent"/>  -->
+
     <Button
         android:id="@+id/clickButton"
         android:layout_width="wrap_content"
@@ -56,4 +45,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
+    <!--        android:inputType="TODO"-->
+    <!--        android:autofillHints="AUTOFILL_HINT_NAME" />-->
+    <!--
+    <EditText
+        android:id="@+id/response2EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/color_hint"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/textBox2"
+        app:layout_constraintLeft_toRightOf="@id/responseEditText"
+        app:layout_constraintRight_toRightOf="parent"/>  -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
