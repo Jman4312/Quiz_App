@@ -81,22 +81,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 1000, 1000);
     */
-        String text = "";
         // ArrayList<String> texts = new ArrayList<>();
         // texts.add("Hi Mom!");
         // texts.add("Hi Dad!");
         // texts.add("Hi Person!");
+
+        /*
+
         String[] texts = getResources().getStringArray(R.array.textArray);
         displayText.setText(texts[numOfClicks]);
         numOfClicks += 1;
         if (numOfClicks >= texts.length){ numOfClicks = 0;}
         //Toast.makeText(getApplicationContext(),"Done reading.",Toast.LENGTH_SHORT).show();
-        displayText2.setText(responseText.getText());
+        */
 
         // Create New Activity
-
+        EditText nameBox = findViewById(R.id.responseEditText);
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
-        intent.putExtra("com.lowejimmy.quizapp.extra.MESSAGE",displayText2.getText().toString());
+        intent.putExtra("com.lowejimmy.quizapp.extra.MESSAGE",nameBox.getText().toString());
+        displayText2.setText(nameBox.getText().toString());
         startActivityForResult(intent, 1);
     }
     @Override

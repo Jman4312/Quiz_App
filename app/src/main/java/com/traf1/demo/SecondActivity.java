@@ -21,7 +21,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         timeDisplay = findViewById(R.id.gameTime);
-        timeDisplay.setText(getString(R.string.time, 10));
+        timeDisplay.setText(getString(R.string.time, 60));
 
         Intent intent = getIntent();
         TextView label = findViewById(R.id.label);
@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String currentTime = getString(R.string.time,9- duration++);
+                        String currentTime = getString(R.string.time,59- duration++);
                         /*
                         if(duration>=5){
                             timer.cancel();
@@ -47,7 +47,7 @@ public class SecondActivity extends AppCompatActivity {
                         */
                         timeDisplay.setText(currentTime);
 
-                        if(duration>=10){
+                        if(duration>=60){
                             timeOut();
                         }
                     }
@@ -58,7 +58,9 @@ public class SecondActivity extends AppCompatActivity {
 
     public void returnToPrevious(View view) {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "This is my return string!!!");//insert message
+        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results");//insert message
+
+        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results");//insert message
         setResult(RESULT_OK, returnIntent);//indicate response was successful
         finish();//close activity and return to main activity
     }
