@@ -12,6 +12,11 @@
     <string name="time_left">Time Left: %1$d</string>
     <string name="cornerbox1">cornerBox1</string>
     <string name="long_text">example text</string>
+    <string name="answer_a">Answer A</string>
+    <string name="answer_b">Answer B</string>
+    <string name="answer_c">Answer C</string>
+    <string name="answer_d">Answer D</string>
+    <string name="sample_question">SAMPLE QUESTION</string>
     <string-array name="textArray">
         <item> Hi Mom! </item>
         <item> Hi Dad! </item>

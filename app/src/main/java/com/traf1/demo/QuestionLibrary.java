@@ -2,7 +2,7 @@ package com.traf1.demo;
 
 public class QuestionLibrary {
 
-    private String questions [] = {
+    private static String questions [] = {
             "What is the square root of 361",
             "When was Thomas Jefferson Born",
             "In which state is Mount Rushmore",
@@ -15,7 +15,7 @@ public class QuestionLibrary {
             "What is the largest animal on earth"
     };
 
-    private String choices [][] = {
+    private static String choices [][] = {
             {"18", "19", "20", "21"},
             {"1643", "1743", "1843", "1043"},
             {"West Dakota", "East Dakota", "North Dakota", "South Dakota"},
@@ -28,7 +28,7 @@ public class QuestionLibrary {
             {"North Pacific Right Whale", "African Bush Elephant", "White Rhinoceros", "Blue Whale"}
     };
 
-    private String corrrectAnswers[] = {
+    private static String correctAnswers[] = {
             "19",
             "1743",
             "South Dakota",
@@ -40,4 +40,16 @@ public class QuestionLibrary {
             "Cheetah",
             "Blue Whale"
     };
+
+    public static String[] getQuestions() {
+        return questions;
+    }
+
+    public static String[][] getChoices() {
+        return choices;
+    }
+
+    public static String[] getCorrectAnswers() {
+        return correctAnswers;
+    }
 }

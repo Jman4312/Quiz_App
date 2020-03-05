@@ -31,6 +31,55 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gameLabel" />
 
+    <TextView
+        android:id="@+id/question"
+        android:text="@string/sample_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameTime"/>
+
+    <Button
+        android:id="@+id/answerA"
+        android:text="@string/answer_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question"
+        android:onClick="selectA"/>
+
+    <Button
+        android:id="@+id/answerB"
+        android:text="@string/answer_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answerA"
+        android:onClick="selectB"/>
+
+    <Button
+        android:id="@+id/answerC"
+        android:text="@string/answer_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answerB"
+        android:onClick="selectC"/>
+
+    <Button
+        android:id="@+id/answerD"
+        android:text="@string/answer_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/answerC"
+        android:onClick="selectD"/>
+    <!--
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,7 +172,7 @@
 
         </LinearLayout>
     </ScrollView>
-
+    -->
     <Button
         android:id="@+id/returnButton"
         android:layout_width="wrap_content"
