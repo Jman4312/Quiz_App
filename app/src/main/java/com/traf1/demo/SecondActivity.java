@@ -15,7 +15,7 @@ public class SecondActivity extends AppCompatActivity {
     Timer timer = new Timer();
     int duration = 0;
     TextView timeDisplay;
-    int questionNumber = 0;
+    int questionNumber = -1;
     int score = 0;
     String[] questionArray = QuestionLibrary.getQuestions();
     String[][] answersArray = QuestionLibrary.getChoices();
@@ -26,6 +26,8 @@ public class SecondActivity extends AppCompatActivity {
     Button answerB;
     Button answerC;
     Button answerD;
+    
+    String[] leaderBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class SecondActivity extends AppCompatActivity {
         answerB = findViewById(R.id.answerB);
         answerC = findViewById(R.id.answerC);
         answerD = findViewById(R.id.answerD);
+
+        nextQuestion();
 
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -72,12 +76,12 @@ public class SecondActivity extends AppCompatActivity {
                 });
             }
         }, 1000, 1000);
+
+        intent.getStringExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
     }
 
     public void returnToPrevious(View view) {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results");//insert message
-
         returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results");//insert message
         setResult(RESULT_OK, returnIntent);//indicate response was successful
         finish();//close activity and return to main activity
@@ -135,7 +139,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private void submit() {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results: " + score);//insert message
+        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results: " + score + "\nLeaderboard: " + leaderBoard);//insert message
         setResult(RESULT_OK, returnIntent);//indicate response was successful
         finish();//close activity and return to main activity
     }
