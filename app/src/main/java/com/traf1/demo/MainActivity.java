@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
@@ -110,8 +112,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode==1 & resultCode==RESULT_OK){
             displayText.setText(data.getStringExtra("com.lowejimmy.quizapp.extra.REPLY"));
+            Map leaderBoard = new HashMap<String, Integer>();
+            leaderBoard = (Map) data.getSerializableExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
+
+
+            int[] values = new int[10];
+            String[] names = new String[10];
+            for (Object key : leaderBoard.keySet()) {
+                int value = (int) leaderBoard.get(key);
+                int index = 0;
+                for (int i = 0; i < values.length; i ++) {
+                    if (value > values[i]) {
+                        index += 1;
+                    }
+                    else {break;}
+                }
+                if (index >= 1) {
+                    values[index - 1] = value;
+                    names[index-1] = String.valueOf(key);
+                }
+            }
+            String leaderBoardString = "";
+            for (int i = 9; i >= 0; i--) {
+                if(values[i] > 0) {
+                    leaderBoardString = leaderBoardString +  "\n" + String.valueOf(10-i) + ": " + names[i] + " Score: " + String.valueOf(values[i]);
+                }
+            }
+            TextView leaderBoardView = findViewById(R.id.leaderBoard);
+            leaderBoardView.setText(leaderBoardString);
         }
     }
 }

@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,8 +29,9 @@ public class SecondActivity extends AppCompatActivity {
     Button answerB;
     Button answerC;
     Button answerD;
+    Intent intent;
     
-    String[] leaderBoard;
+    Map<String, Integer> leaderBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +41,10 @@ public class SecondActivity extends AppCompatActivity {
         timeDisplay = findViewById(R.id.gameTime);
         timeDisplay.setText(getString(R.string.time, 60));
 
-        Intent intent = getIntent();
+        intent = getIntent();
         TextView label = findViewById(R.id.label);
         label.setText(intent.getStringExtra("com.lowejimmy.quizapp.extra.MESSAGE"));
+        leaderBoard = (Map<String, Integer>) intent.getSerializableExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
 
         question = findViewById(R.id.question);
         answerA = findViewById(R.id.answerA);
@@ -48,6 +53,7 @@ public class SecondActivity extends AppCompatActivity {
         answerD = findViewById(R.id.answerD);
 
         nextQuestion();
+
 
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -76,8 +82,6 @@ public class SecondActivity extends AppCompatActivity {
                 });
             }
         }, 1000, 1000);
-
-        intent.getStringExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
     }
 
     public void returnToPrevious(View view) {
@@ -138,8 +142,30 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void submit() {
+        int lowestScore = 10;
+        String lowestKey = "";
+        if (leaderBoard != null) {
+            if (leaderBoard.keySet().size() >= 5) {
+                for (String key : leaderBoard.keySet()) {
+                    if (leaderBoard.get(key) < lowestScore) {
+                        lowestScore = leaderBoard.get(key);
+                        lowestKey = key;
+                    }
+                }
+                leaderBoard.remove(lowestKey);
+                leaderBoard.put(intent.getStringExtra("com.lowejimmy.quizapp.extra.MESSAGE"), score);
+            }
+            else {
+                leaderBoard.put(intent.getStringExtra("com.lowejimmy.quizapp.extra.MESSAGE"), score);
+            }
+        }
+        else {
+            leaderBoard = new HashMap<String, Integer>();
+            leaderBoard.put(intent.getStringExtra("com.lowejimmy.quizapp.extra.MESSAGE"), score);
+        }
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results: " + score + "\nLeaderboard: " + leaderBoard);//insert message
+        returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results: " + score);//insert message
+        returnIntent.putExtra("com.lowe.jimmy.quizapp.extra.LEADERBOARD", (Serializable) leaderBoard);
         setResult(RESULT_OK, returnIntent);//indicate response was successful
         finish();//close activity and return to main activity
     }
