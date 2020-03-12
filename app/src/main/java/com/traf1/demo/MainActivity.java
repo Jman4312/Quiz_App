@@ -13,9 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
+
 
 public class MainActivity extends AppCompatActivity {
     Button submitButton;
@@ -27,12 +30,18 @@ public class MainActivity extends AppCompatActivity {
     int numOfClicks = 0;
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    Map leaderBoard;
+    Gson gson = new Gson();
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //initialize preferences
         mPreferences = getSharedPreferences("com.traf1.demo.sharedprefs",MODE_PRIVATE);
+        leaderBoard = gson.fromJson(mPreferences.getString("leaderboard", ""), HashMap.class);
+        intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("com.lowejimmy.quizapp.extra.LEADERBOARD", gson.toJson(leaderBoard));
         //response2Text = findViewById(R.id.response2EditText);
         submitButton=findViewById(R.id.clickButton);
         responseText=findViewById(R.id.responseEditText);
@@ -104,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Create New Activity
         EditText nameBox = findViewById(R.id.responseEditText);
-        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         intent.putExtra("com.lowejimmy.quizapp.extra.MESSAGE",nameBox.getText().toString());
         displayText2.setText(nameBox.getText().toString());
         startActivityForResult(intent, 1);
@@ -112,17 +120,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode==1 & resultCode==RESULT_OK){
             displayText.setText(data.getStringExtra("com.lowejimmy.quizapp.extra.REPLY"));
-            Map leaderBoard = new HashMap<String, Integer>();
-            leaderBoard = (Map) data.getSerializableExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
-
+            leaderBoard = (HashMap) data.getSerializableExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
+            String leaderBoardString2 = gson.toJson(leaderBoard);
+            SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+            preferencesEditor.putString("leaderboard", leaderBoardString2);
+            // preferencesEditor.putInt("mResponseNum", Integer.parseInt(response2Text.getText().toString()));
+            preferencesEditor.apply();
 
             int[] values = new int[10];
             String[] names = new String[10];
             for (Object key : leaderBoard.keySet()) {
-                int value = (int) leaderBoard.get(key);
+                String value2 = String.valueOf(leaderBoard.get(key));
+                int value;
+                if (value2.contains(".")) {
+                    value = Integer.parseInt(value2.substring(0, value2.indexOf('.')));
+                }
+                else {
+                    value = Integer.parseInt(value2);
+                }
                 int index = 0;
                 for (int i = 0; i < values.length; i ++) {
                     if (value > values[i]) {

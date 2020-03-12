@@ -8,9 +8,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,11 +31,14 @@ public class SecondActivity extends AppCompatActivity {
     Button answerC;
     Button answerD;
     Intent intent;
+
+    Gson gson;
     
-    Map<String, Integer> leaderBoard;
+    HashMap<String, Integer> leaderBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        gson = new Gson();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
@@ -44,8 +48,7 @@ public class SecondActivity extends AppCompatActivity {
         intent = getIntent();
         TextView label = findViewById(R.id.label);
         label.setText(intent.getStringExtra("com.lowejimmy.quizapp.extra.MESSAGE"));
-        leaderBoard = (Map<String, Integer>) intent.getSerializableExtra("com.lowejimmy.quizapp.extra.LEADERBOARD");
-
+        leaderBoard = gson.fromJson(intent.getStringExtra("com.lowejimmy.quizapp.extra.LEADERBOARD"), HashMap.class);
         question = findViewById(R.id.question);
         answerA = findViewById(R.id.answerA);
         answerB = findViewById(R.id.answerB);
@@ -165,7 +168,7 @@ public class SecondActivity extends AppCompatActivity {
         }
         Intent returnIntent = new Intent();
         returnIntent.putExtra("com.lowejimmy.quizapp.extra.REPLY", "Results: " + score);//insert message
-        returnIntent.putExtra("com.lowe.jimmy.quizapp.extra.LEADERBOARD", (Serializable) leaderBoard);
+        returnIntent.putExtra("com.lowejimmy.quizapp.extra.LEADERBOARD", (Serializable) leaderBoard);
         setResult(RESULT_OK, returnIntent);//indicate response was successful
         finish();//close activity and return to main activity
     }
